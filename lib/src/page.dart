@@ -72,7 +72,6 @@ class _PDFPageState extends State<PDFPage> {
           minScale: widget.minScale,
           panLimit: widget.panLimit,
           maxScale: widget.maxScale,
-          autoCenter: true,
           initialScale: widget.rotationAngle! != 0 ? 1.55 : 1.0,
           child: Transform.rotate(
             angle: widget.rotationAngle! * pi / 180,
