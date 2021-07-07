@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:advance_pdf_viewer/src/zoomable_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/painting.dart';
 
@@ -19,6 +21,7 @@ class PDFPage extends StatefulWidget {
   final double minScale;
   final double maxScale;
   final double panLimit;
+  final double? rotationAngle;
   PDFPage(
     this.imgPath,
     this.num, {
@@ -27,6 +30,7 @@ class PDFPage extends StatefulWidget {
     this.minScale = 1.0,
     this.maxScale = 5.0,
     this.panLimit = 1.0,
+    this.rotationAngle = 0,
   });
 
   @override
@@ -68,7 +72,16 @@ class _PDFPageState extends State<PDFPage> {
           minScale: widget.minScale,
           panLimit: widget.panLimit,
           maxScale: widget.maxScale,
-          child: Image(image: provider),
+          autoCenter: true,
+          initialScale: widget.rotationAngle! != 0 ? 1.6 : 1.0,
+          child: Transform.rotate(
+            angle: widget.rotationAngle! * pi / 180,
+            child: Image(
+              image: provider,
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.high,
+            ),
+          ),
         ));
   }
 }

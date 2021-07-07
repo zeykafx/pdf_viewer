@@ -14,6 +14,7 @@ class PDFDocument {
   late int count;
   List<PDFPage> _pages = [];
   bool _preloaded = false;
+  static double pageRotationAngle = 0;
 
   /// Load a PDF File from a given File
   /// [File file], file to be loaded
@@ -103,6 +104,7 @@ class PDFDocument {
       minScale: minScale ?? 1.0,
       maxScale: maxScale ?? 5.0,
       panLimit: panLimit ?? 1.0,
+      rotationAngle: pageRotationAngle,
     );
   }
 
